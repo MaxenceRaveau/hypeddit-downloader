@@ -1,25 +1,30 @@
 importScripts('../shared/config.js', 'routing.js');
 
-chrome.runtime.onMessage.addListener(function(message, sender) {
-  if (!message || message.type !== 'expectDownload' || !sender.tab) {
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+  if (!message || !sender.tab) {
     return;
   }
   const tabId = sender.tab.id;
-  (async function() {
-    let subfolder = '';
-    try {
-      subfolder = (await HD.loadConfig()).subfolder;
-    } catch (err) {
-      console.warn('Hypeddit Downloader: could not load config', err);
-    }
-    try {
-      await chrome.storage.session.set({
-        pending: { tabId: tabId, at: Date.now(), subfolder: subfolder }
-      });
-    } catch (err) {
-      console.warn('Hypeddit Downloader: could not store pending download', err);
-    }
-  })();
+
+  if (message.type === 'expectDownload') {
+    (async function() {
+      let subfolder = '';
+      try {
+        subfolder = (await HD.loadConfig()).subfolder;
+      } catch (err) {
+        console.warn('Hypeddit Downloader: could not load config', err);
+      }
+      try {
+        await chrome.storage.session.set({
+          pending: { tabId: tabId, at: Date.now(), subfolder: subfolder }
+        });
+      } catch (err) {
+        console.warn('Hypeddit Downloader: could not store pending download', err);
+      }
+      sendResponse({ ok: true });
+    })();
+    return true;
+  }
 });
 
 chrome.downloads.onDeterminingFilename.addListener(function(item, suggest) {

@@ -20,7 +20,9 @@ HD.reasonFromError = function(err) {
  * @param {Document|Element} root
  * @param {Object} config
  * @param {Object} deps
- * @param {() => Promise<string|null>} deps.expectDownload
+ * @param {() => {ready: Promise<void>, result: Promise<string|null>}} deps.expectDownload
+ *   ready resolves once the download is armed (or after a short timeout); result resolves
+ *   with the filename or null. Neither promise rejects.
  * @param {(stepName: string) => void} [deps.onProgress]
  * @param {number} [deps.stepTimeoutMs]
  * @param {number} [deps.maxAttempts]
@@ -75,14 +77,14 @@ HD.runGate = async function(root, config, deps) {
     }
 
     if (name === 'finish') {
-      const downloadPromise = expectDownload();
-      downloadPromise.catch(() => {});
+      const { ready, result } = expectDownload();
+      await ready;
       try {
         await step.run(root, config);
       } catch (err) {
         return { ok: false, reason: HD.reasonFromError(err) };
       }
-      const filename = await downloadPromise;
+      const filename = await result;
       return filename
         ? { ok: true, filename }
         : { ok: false, reason: 'no download started' };
