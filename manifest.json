@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Hypeddit Downloader",
+  "version": "0.1.0",
+  "description": "Auto-clears Hypeddit download gates",
+  "permissions": [
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://hypeddit.com/*",
+    "https://www.hypeddit.com/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "background": {
+    "service_worker": "src/background/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://hypeddit.com/*",
+        "https://www.hypeddit.com/*"
+      ],
+      "js": [
+        "src/shared/config.js",
+        "src/content/dom.js",
+        "src/content/notice.js",
+        "src/content/steps.js",
+        "src/content/runner.js",
+        "src/content/main.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
