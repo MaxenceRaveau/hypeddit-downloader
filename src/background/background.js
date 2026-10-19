@@ -25,6 +25,19 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     })();
     return true;
   }
+
+  if (message.type === 'cancelExpect') {
+    (async function() {
+      try {
+        const stored = await chrome.storage.session.get('pending');
+        if (stored.pending && stored.pending.tabId === tabId) {
+          await chrome.storage.session.remove('pending');
+        }
+      } catch (err) {
+        console.warn('Hypeddit Downloader: could not cancel pending download', err);
+      }
+    })();
+  }
 });
 
 chrome.downloads.onDeterminingFilename.addListener(function(item, suggest) {
