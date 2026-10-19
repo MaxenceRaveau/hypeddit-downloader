@@ -55,6 +55,42 @@ HD.steps = [
     }
   },
   {
+    name: 'spotify',
+    detect(root) {
+      return HD.isActive(root.querySelector('#skipper[data-step="sp"]'));
+    },
+    async run(root) {
+      root.querySelector('#skipper[data-step="sp"]').click();
+    }
+  },
+  {
+    name: 'tiktok',
+    detect(root) {
+      return HD.isActive(root.querySelector('#skipper_tk'));
+    },
+    async run(root) {
+      root.querySelector('#skipper_tk').click();
+    }
+  },
+  {
+    name: 'youtube',
+    detect(root) {
+      return HD.isActive(root.querySelector('#skipper_yt'));
+    },
+    async run(root) {
+      root.querySelector('#skipper_yt').click();
+    }
+  },
+  {
+    name: 'instagram',
+    detect(root) {
+      return HD.isActive(root.querySelector('#skipper_ig'));
+    },
+    async run(root) {
+      root.querySelector('#skipper_ig').click();
+    }
+  },
+  {
     name: 'finish',
     detect(root) {
       return HD.isActive(root.querySelector('#gateDownloadButton'));

@@ -15,7 +15,7 @@ Hypeddit "free download" pages (e.g. `https://hypeddit.com/threshld/supernovathr
 
 ## Non-goals (for now)
 
-- Platforms other than SoundCloud (Spotify, Instagram, YouTube, comments…).
+- Connecting accounts on other platforms (only skip links supported).
 - Batch processing a list of URLs.
 - Renaming files.
 - Publishing to the Chrome Web Store (loaded unpacked).
@@ -38,7 +38,14 @@ Clicking the initial "Download" button on the page opens the gate. Steps can app
    - Replacing class `undone` with `done` validates the action. This is pure client-side JS — the user verified no request is sent to Hypeddit — so no tab needs to be opened.
    - Then click `#skipper_sc_next` if it exists; otherwise click `#skipper_sc_channel`.
    - The user is confident this is enough to get a working download: they never actually perform the SoundCloud actions, and no request leaves the browser during the gate. The first live test should still confirm a full gate ends in a real file. If it doesn't, the fallback is opening each link in a background tab and closing it right away.
-3. **Finish step**
+3. **Skip steps** (Spotify, TikTok, YouTube, Instagram)
+   - Each platform's step shows a skip link that advances to the next step without connecting the account:
+     - Spotify: `#skipper[data-step="sp"]`
+     - TikTok: `#skipper_tk`
+     - YouTube: `#skipper_yt`
+     - Instagram: `#skipper_ig`
+   - The extension clicks the skip link to advance. Never connect accounts.
+4. **Finish step**
    - Page shows "THANK YOU FOR YOUR SUPPORT".
    - Click `#gateDownloadButton` to get the file.
 

@@ -25,12 +25,33 @@ A Chrome extension that auto-clears Hypeddit download gates.
 - If you leave **subfolder** empty, files go to your default Downloads folder
 - Only downloads initiated by the extension are routed to the subfolder; other downloads are not affected
 
-## Adding a New Step
+## Supported Steps
 
-To add a new automation step to the extension, add a new entry to the `HD.steps` array in `src/content/steps.js`. Each step is an object with the following properties:
+The extension currently handles the following gate steps:
 
-- `name`: A string to identify the step (used in progress messages)
-- `detect(root)`: A function that returns `true` if this step is currently visible on the page
-- `run(root, config)`: A function that performs the step's action (fills fields, clicks buttons, etc.)
+1. **Email**: Fills in your first name and email
+2. **SoundCloud**: Swaps button class from `undone` to `done` (client-side only)
+3. **Spotify**: Clicks the skip link (`#skipper[data-step="sp"]`)
+4. **TikTok**: Clicks the skip link (`#skipper_tk`)
+5. **YouTube**: Clicks the skip link (`#skipper_yt`)
+6. **Instagram**: Clicks the skip link (`#skipper_ig`)
 
-The extension will execute your steps in order (first match wins) to auto-clear the Hypeddit download gate.
+Note: Skip links do not connect your account — they simply advance to the next step.
+
+## Adding a New Skip Platform
+
+To add another platform with a skip link, add one row to the skip table in `src/content/steps.js`:
+
+```javascript
+{
+  name: 'myplatform',
+  detect(root) {
+    return HD.isActive(root.querySelector('#skipper_mp'));
+  },
+  async run(root) {
+    root.querySelector('#skipper_mp').click();
+  }
+},
+```
+
+Then insert it before the `finish` step in the `HD.steps` array.
