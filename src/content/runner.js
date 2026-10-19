@@ -67,8 +67,8 @@ HD.runGate = async function(root, config, deps) {
       lastName = name;
       attempts = 0;
     }
-    if (attempts >= maxAttempts) {
-      return { ok: false, reason: `step "${name}" did not advance the page` };
+    if (attempts >= (step.maxAttempts || maxAttempts)) {
+      return { ok: false, reason: step.stuckReason || `step "${name}" did not advance the page` };
     }
     attempts++;
 
@@ -100,6 +100,6 @@ HD.runGate = async function(root, config, deps) {
     await HD.waitFor(() => {
       const d = HD.detectStep(root);
       return !(d.kind === 'step' && d.step.name === name);
-    }, { timeoutMs: stepTimeoutMs });
+    }, { timeoutMs: step.timeoutMs || stepTimeoutMs });
   }
 };

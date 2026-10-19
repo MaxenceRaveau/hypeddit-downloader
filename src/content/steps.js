@@ -64,6 +64,18 @@ HD.steps = [
   },
   ...HD.SKIP_STEPS.map(({ name, skip }) => ({ name, detect(root) { return HD.isActive(root.querySelector(skip)); }, async run(root) { root.querySelector(skip).click(); } })),
   {
+    name: 'twitch-connect',
+    maxAttempts: 1,
+    timeoutMs: 20000,
+    stuckReason: "Twitch connect didn't complete. Allow pop-ups for hypeddit.com and connect to Twitch once manually",
+    detect(root) {
+      return HD.isActive(root.querySelector('#login_to_th'));
+    },
+    async run(root) {
+      root.querySelector('#login_to_th').click();
+    }
+  },
+  {
     name: 'finish',
     detect(root) {
       return HD.isActive(root.querySelector('#gateDownloadButton'));

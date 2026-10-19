@@ -35,9 +35,15 @@ The extension currently handles the following gate steps:
 4. **TikTok**: Clicks the skip link (`#skipper_tk`)
 5. **YouTube**: Clicks the skip link (`#skipper_yt`)
 6. **Instagram**: Clicks the skip link (`#skipper_ig`)
-7. **Twitch**: Clicks the skip link (`#skipper_th`) when the gate offers one. Gates without it stop with the "unknown page" notice.
+7. **Twitch**: Clicks the skip link (`#skipper_th`) when the gate offers one. Otherwise clicks the Connect button (see "Twitch gates").
 
 Note: Skip links do not connect your account — they simply advance to the next step.
+
+## Twitch gates
+
+- Gates with a skip link are skipped.
+- Gates without one use the Connect button. This requires connecting Hypeddit to Twitch manually once, and allowing pop-ups for hypeddit.com (popup-blocked icon in the address bar, or Chrome Settings → Privacy and security → Site settings → Pop-ups and redirects → Allowed).
+- Each run follows the gate's artists on your Twitch account, as a manual Connect would.
 
 ## Adding a New Skip Platform
 
