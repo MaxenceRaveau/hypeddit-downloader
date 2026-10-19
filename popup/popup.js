@@ -17,14 +17,16 @@ async function loadSettings() {
  * Save settings to chrome.storage.sync
  */
 async function saveSettings() {
-  const firstName = document.getElementById('firstName').value;
-  const email = document.getElementById('email').value;
+  const firstName = document.getElementById('firstName').value.trim();
+  const email = document.getElementById('email').value.trim();
   const subfolderInput = document.getElementById('subfolder').value;
 
   // Sanitize the subfolder
   const subfolder = HD.sanitizeSubfolder(subfolderInput);
 
-  // Update the input with the sanitized value
+  // Write the trimmed and sanitized values back
+  document.getElementById('firstName').value = firstName;
+  document.getElementById('email').value = email;
   document.getElementById('subfolder').value = subfolder;
 
   try {
