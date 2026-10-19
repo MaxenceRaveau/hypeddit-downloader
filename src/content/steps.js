@@ -46,7 +46,12 @@ HD.steps = [
       for (const button of buttons) {
         button.classList.replace('undone', 'done');
       }
-      root.querySelector('#skipper_sc_channel').click();
+      const nextBtn = root.querySelector('#skipper_sc_next');
+      if (nextBtn) {
+        nextBtn.click();
+      } else {
+        root.querySelector('#skipper_sc_channel').click();
+      }
     }
   },
   {

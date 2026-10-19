@@ -21,7 +21,7 @@
 - Selectors (verified on the live page 2026-10-19):
   - gate start button `#downloadProcess`; gate steps container `#all_steps`
   - email step `#step_email`, inputs `input.hype-form-control[name="email_name"]`, `input.hype-form-control[name="email_address"]`, next `#email_to_downloads_next`
-  - SoundCloud step `#step_sc`, buttons `a.hype-btn-social.hype-btn-soundcloud.undone` inside it, next `#skipper_sc_channel`
+  - SoundCloud step `#step_sc`, buttons `a.hype-btn-social.hype-btn-soundcloud.undone` inside it, next `#skipper_sc_next` (fallback `#skipper_sc_channel`)
   - finish: `#gateDownloadButton` visible (primary); text "Thank you for your support" case-insensitive (secondary)
   - captcha `#gatePreviewCaptcha` (stop if visible)
 - "Visible" = `HD.isVisible(el)`: element exists and `el.getClientRects().length > 0` and computed `visibility !== 'hidden'`.

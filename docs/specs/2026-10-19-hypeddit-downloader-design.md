@@ -36,7 +36,7 @@ Clicking the initial "Download" button on the page opens the gate. Steps can app
 2. **SoundCloud actions step**
    - Inside a `<span>`, several `<a>` elements with classes `hype-btn hype-btn-social hype-btn-soundcloud hype-btn-xlarge hype-w-100 undone`.
    - Replacing class `undone` with `done` validates the action. This is pure client-side JS — the user verified no request is sent to Hypeddit — so no tab needs to be opened.
-   - Then click `#skipper_sc_channel`.
+   - Then click `#skipper_sc_next` if it exists; otherwise click `#skipper_sc_channel`.
    - The user is confident this is enough to get a working download: they never actually perform the SoundCloud actions, and no request leaves the browser during the gate. The first live test should still confirm a full gate ends in a real file. If it doesn't, the fallback is opening each link in a background tab and closing it right away.
 3. **Finish step**
    - Page shows "THANK YOU FOR YOUR SUPPORT".
