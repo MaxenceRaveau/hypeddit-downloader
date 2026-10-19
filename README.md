@@ -40,18 +40,8 @@ Note: Skip links do not connect your account — they simply advance to the next
 
 ## Adding a New Skip Platform
 
-To add another platform with a skip link, add one row to the skip table in `src/content/steps.js`:
+To add another platform with a skip link, add one row to `HD.SKIP_STEPS` in `src/content/steps.js`:
 
 ```javascript
-{
-  name: 'myplatform',
-  detect(root) {
-    return HD.isActive(root.querySelector('#skipper_mp'));
-  },
-  async run(root) {
-    root.querySelector('#skipper_mp').click();
-  }
-},
+{ name: 'myplatform', skip: '#skipper_mp' }
 ```
-
-Then insert it before the `finish` step in the `HD.steps` array.

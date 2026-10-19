@@ -11,6 +11,13 @@ HD.isGatePage = function(root) {
   return Boolean(root.querySelector('#downloadProcess') || root.querySelector('#all_steps'));
 };
 
+HD.SKIP_STEPS = [
+  { name: 'spotify', skip: '#skipper[data-step="sp"]' },
+  { name: 'tiktok', skip: '#skipper_tk' },
+  { name: 'youtube', skip: '#skipper_yt' },
+  { name: 'instagram', skip: '#skipper_ig' }
+];
+
 HD.steps = [
   {
     name: 'start',
@@ -54,42 +61,7 @@ HD.steps = [
       }
     }
   },
-  {
-    name: 'spotify',
-    detect(root) {
-      return HD.isActive(root.querySelector('#skipper[data-step="sp"]'));
-    },
-    async run(root) {
-      root.querySelector('#skipper[data-step="sp"]').click();
-    }
-  },
-  {
-    name: 'tiktok',
-    detect(root) {
-      return HD.isActive(root.querySelector('#skipper_tk'));
-    },
-    async run(root) {
-      root.querySelector('#skipper_tk').click();
-    }
-  },
-  {
-    name: 'youtube',
-    detect(root) {
-      return HD.isActive(root.querySelector('#skipper_yt'));
-    },
-    async run(root) {
-      root.querySelector('#skipper_yt').click();
-    }
-  },
-  {
-    name: 'instagram',
-    detect(root) {
-      return HD.isActive(root.querySelector('#skipper_ig'));
-    },
-    async run(root) {
-      root.querySelector('#skipper_ig').click();
-    }
-  },
+  ...HD.SKIP_STEPS.map(({ name, skip }) => ({ name, detect(root) { return HD.isActive(root.querySelector(skip)); }, async run(root) { root.querySelector(skip).click(); } })),
   {
     name: 'finish',
     detect(root) {
