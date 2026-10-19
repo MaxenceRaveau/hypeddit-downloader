@@ -25,7 +25,7 @@ HD.steps = [
   {
     name: 'email',
     detect(root) {
-      return HD.isVisible(root.querySelector('#step_email'));
+      return HD.isActive(root.querySelector('#step_email'));
     },
     async run(root, config) {
       if (!config.firstName || !config.email) {
@@ -39,7 +39,7 @@ HD.steps = [
   {
     name: 'soundcloud',
     detect(root) {
-      return HD.isVisible(root.querySelector('#step_sc'));
+      return HD.isActive(root.querySelector('#step_sc'));
     },
     async run(root) {
       const buttons = root.querySelectorAll('#step_sc a.hype-btn-soundcloud.undone');
@@ -52,7 +52,7 @@ HD.steps = [
   {
     name: 'finish',
     detect(root) {
-      return HD.isVisible(root.querySelector('#gateDownloadButton'));
+      return HD.isActive(root.querySelector('#gateDownloadButton'));
     },
     async run(root) {
       root.querySelector('#gateDownloadButton').click();
@@ -71,7 +71,7 @@ HD.detectStep = function(root) {
   }
 
   const stepSc = root.querySelector('#step_sc');
-  if (HD.isVisible(stepSc) &&
+  if (HD.isActive(stepSc) &&
       stepSc.querySelector('.hype-btn-social:not(.hype-btn-soundcloud)')) {
     return { kind: 'stop', reason: HD.UNKNOWN_REASON };
   }

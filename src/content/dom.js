@@ -21,6 +21,17 @@ HD.isVisible = function(el) {
 };
 
 /**
+ * Check if an element is visible and not inside an inactive gate slide.
+ * Inactive slides stay rendered (opacity 0, z-index -1), so visibility alone is not enough.
+ * @param {Element|null} el
+ * @returns {boolean}
+ */
+HD.isActive = function(el) {
+  return HD.isVisible(el) &&
+    !el.closest('.fangate-slider-content.upcomming-slide, .fangate-slider-content.move-left');
+};
+
+/**
  * Set input value and dispatch input and change events.
  * @param {HTMLInputElement} input
  * @param {string} value
@@ -46,7 +57,12 @@ HD.waitFor = function(predicate, options = {}) {
     const startTime = Date.now();
 
     const checkPredicate = () => {
-      const result = predicate();
+      let result;
+      try {
+        result = predicate();
+      } catch (err) {
+        result = null;
+      }
       if (result) {
         resolve(result);
         return;
