@@ -15,7 +15,8 @@ HD.SKIP_STEPS = [
   { name: 'spotify', skip: '#skipper[data-step="sp"]' },
   { name: 'tiktok', skip: '#skipper_tk' },
   { name: 'youtube', skip: '#skipper_yt' },
-  { name: 'instagram', skip: '#skipper_ig' }
+  { name: 'instagram', skip: '#skipper_ig' },
+  { name: 'twitch', skip: '#skipper_th' }
 ];
 
 HD.steps = [

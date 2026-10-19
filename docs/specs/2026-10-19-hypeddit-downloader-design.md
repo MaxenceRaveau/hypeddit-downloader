@@ -44,6 +44,7 @@ Clicking the initial "Download" button on the page opens the gate. Steps can app
      - TikTok: `#skipper_tk`
      - YouTube: `#skipper_yt`
      - Instagram: `#skipper_ig`
+     - Twitch: `#skipper_th` (only some gates offer it; without it, the gate requires a real Twitch login and the extension stops)
    - The extension clicks the skip link to advance. Never connect accounts.
 4. **Finish step**
    - Page shows "THANK YOU FOR YOUR SUPPORT".

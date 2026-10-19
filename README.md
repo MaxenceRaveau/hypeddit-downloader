@@ -35,6 +35,7 @@ The extension currently handles the following gate steps:
 4. **TikTok**: Clicks the skip link (`#skipper_tk`)
 5. **YouTube**: Clicks the skip link (`#skipper_yt`)
 6. **Instagram**: Clicks the skip link (`#skipper_ig`)
+7. **Twitch**: Clicks the skip link (`#skipper_th`) when the gate offers one. Gates without it stop with the "unknown page" notice.
 
 Note: Skip links do not connect your account — they simply advance to the next step.
 
