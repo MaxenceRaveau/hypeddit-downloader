@@ -17,7 +17,7 @@ A Chrome extension that auto-clears Hypeddit download gates.
    - **First Name**: Your first name (required)
    - **Email**: Your email address (required)
    - **Subfolder**: Where to download files (optional, defaults to Downloads folder)
-3. Changes are automatically saved to your Chrome account (via sync storage)
+3. Click the **Save** button to save your settings to your Chrome account (via sync storage)
 
 ## Where Downloads Land
 
@@ -27,13 +27,10 @@ A Chrome extension that auto-clears Hypeddit download gates.
 
 ## Adding a New Step
 
-To add a new automation step to the extension:
+To add a new automation step to the extension, add a new entry to the `HD.steps` array in `src/content/steps.js`. Each step is an object with the following properties:
 
-1. Create a new entry in the `HD.steps` array in your step handler code
-2. Each step should include:
-   - A name to identify the step
-   - Logic to detect when the step is visible on the page
-   - Logic to perform the step's action (fill fields, click buttons, etc.)
-   - Logic to verify the step completed successfully
+- `name`: A string to identify the step (used in progress messages)
+- `detect(root)`: A function that returns `true` if this step is currently visible on the page
+- `run(root, config)`: A function that performs the step's action (fills fields, clicks buttons, etc.)
 
-The extension will execute your steps in order to auto-clear the Hypeddit download gate.
+The extension will execute your steps in order (first match wins) to auto-clear the Hypeddit download gate.
