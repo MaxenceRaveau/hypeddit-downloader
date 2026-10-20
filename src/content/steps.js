@@ -64,6 +64,26 @@ HD.steps = [
   },
   ...HD.SKIP_STEPS.map(({ name, skip }) => ({ name, detect(root) { return HD.isActive(root.querySelector(skip)); }, async run(root) { root.querySelector(skip).click(); } })),
   {
+    name: 'instagram-follow',
+    detect(root) {
+      return HD.isActive(root.querySelector('#skipper_ig_channel'));
+    },
+    async run(root) {
+      const buttons = root.querySelectorAll('#step_ig a.hype-btn-instagram.undone');
+      for (const button of buttons) {
+        button.classList.replace('undone', 'done');
+      }
+      root.querySelector('#skipper_ig_channel').click();
+      const nextBtn = await HD.waitFor(() => {
+        const btn = root.querySelector('#skipper_ig_next');
+        return HD.isVisible(btn) && btn;
+      }, { timeoutMs: 5000 });
+      if (nextBtn) {
+        nextBtn.click();
+      }
+    }
+  },
+  {
     name: 'twitch-connect',
     maxAttempts: 1,
     timeoutMs: 20000,
