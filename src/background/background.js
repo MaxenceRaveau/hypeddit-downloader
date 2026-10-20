@@ -43,6 +43,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 chrome.downloads.onDeterminingFilename.addListener(function(item, suggest) {
   (async function() {
     let suggestion;
+    let tabToClose = null;
     try {
       const stored = await chrome.storage.session.get('pending');
       const pending = stored.pending || null;
@@ -54,11 +55,16 @@ chrome.downloads.onDeterminingFilename.addListener(function(item, suggest) {
           type: 'downloadStarted',
           filename: filename
         }).catch(function() {});
+        tabToClose = pending.tabId;
       }
     } catch (err) {
       console.warn('Hypeddit Downloader: download routing failed', err);
     }
     suggest(suggestion);
+    // The download carries on without the gate page, so close it.
+    if (tabToClose !== null) {
+      chrome.tabs.remove(tabToClose).catch(function() {});
+    }
   })();
   return true;
 });

@@ -24,6 +24,7 @@ A Chrome extension that auto-clears Hypeddit download gates.
 - If you specify a **subfolder**, files are downloaded to: `Downloads/<subfolder>/`
 - If you leave **subfolder** empty, files go to your default Downloads folder
 - Only downloads initiated by the extension are routed to the subfolder; other downloads are not affected
+- Once the download starts, the extension closes the gate tab (the download carries on). If the gate stops on an error, the tab stays open so you can read the notice
 
 ## Supported Steps
 

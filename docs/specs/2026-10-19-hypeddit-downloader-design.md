@@ -51,6 +51,7 @@ Clicking the initial "Download" button on the page opens the gate. Steps can app
 4. **Finish step**
    - Page shows "THANK YOU FOR YOUR SUPPORT".
    - Click `#gateDownloadButton` to get the file.
+   - Once the service worker sees that download start, it closes the gate tab. Stopped gates keep their tab open so the user sees the reason.
 
 ## Decided behavior
 
