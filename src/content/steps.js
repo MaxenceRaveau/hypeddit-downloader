@@ -19,6 +19,11 @@ HD.SKIP_STEPS = [
   { name: 'twitch', skip: '#skipper_th' }
 ];
 
+HD.CONNECT_STEPS = [
+  { name: 'spotify-connect', button: '#login_to_sp', label: 'Spotify' },
+  { name: 'twitch-connect', button: '#login_to_th', label: 'Twitch' }
+];
+
 HD.steps = [
   {
     name: 'start',
@@ -83,18 +88,18 @@ HD.steps = [
       }
     }
   },
-  {
-    name: 'twitch-connect',
+  ...HD.CONNECT_STEPS.map(({ name, button, label }) => ({
+    name,
     maxAttempts: 1,
     timeoutMs: 20000,
-    stuckReason: "Twitch connect didn't complete. Allow pop-ups for hypeddit.com and connect to Twitch once manually",
+    stuckReason: `${label} connect didn't complete. Allow pop-ups for hypeddit.com and connect to ${label} once manually`,
     detect(root) {
-      return HD.isActive(root.querySelector('#login_to_th'));
+      return HD.isActive(root.querySelector(button));
     },
     async run(root) {
-      root.querySelector('#login_to_th').click();
+      root.querySelector(button).click();
     }
-  },
+  })),
   {
     name: 'finish',
     detect(root) {

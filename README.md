@@ -31,19 +31,20 @@ The extension currently handles the following gate steps:
 
 1. **Email**: Fills in your first name and email
 2. **SoundCloud**: Swaps button class from `undone` to `done` (client-side only)
-3. **Spotify**: Clicks the skip link (`#skipper[data-step="sp"]`)
+3. **Spotify**: Clicks the skip link (`#skipper[data-step="sp"]`) when the gate offers one. Otherwise clicks the Connect button (see "Connect gates").
 4. **TikTok**: Clicks the skip link (`#skipper_tk`)
 5. **YouTube**: Clicks the skip link (`#skipper_yt`)
 6. **Instagram**: Clicks the skip link (`#skipper_ig`) when the gate offers one. Otherwise swaps the follow buttons from `undone` to `done` (client-side only) and clicks Next twice (`#skipper_ig_channel`, then `#skipper_ig_next`)
-7. **Twitch**: Clicks the skip link (`#skipper_th`) when the gate offers one. Otherwise clicks the Connect button (see "Twitch gates").
+7. **Twitch**: Clicks the skip link (`#skipper_th`) when the gate offers one. Otherwise clicks the Connect button (see "Connect gates").
 
 Note: Skip links do not connect your account — they simply advance to the next step.
 
-## Twitch gates
+## Connect gates (Spotify, Twitch)
 
 - Gates with a skip link are skipped.
-- Gates without one use the Connect button. This requires connecting Hypeddit to Twitch manually once, and allowing pop-ups for hypeddit.com (popup-blocked icon in the address bar, or Chrome Settings → Privacy and security → Site settings → Pop-ups and redirects → Allowed).
-- Each run follows the gate's artists on your Twitch account, as a manual Connect would.
+- Gates without one use the Connect button (`#login_to_sp`, `#login_to_th`). This requires connecting Hypeddit to the platform manually once, and allowing pop-ups for hypeddit.com (popup-blocked icon in the address bar, or Chrome Settings → Privacy and security → Site settings → Pop-ups and redirects → Allowed).
+- Each run performs the gate's actions on your real account (save, follow, ...), as a manual Connect would.
+- To add another platform, add one row to `HD.CONNECT_STEPS` in `src/content/steps.js`.
 
 ## Adding a New Skip Platform
 
