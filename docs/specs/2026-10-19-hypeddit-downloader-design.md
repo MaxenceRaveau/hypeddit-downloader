@@ -46,6 +46,7 @@ Clicking the initial "Download" button on the page opens the gate. Steps can app
      - YouTube subscribe fallback: when there is no skip link, the extension swaps the `#step_yt` subscribe buttons from `undone` to `done` (no popup, nothing subscribed), clicks `#skipper_yt_channel`, waits up to 5 s for `#skipper_yt_next` to show, and clicks it.
      - Instagram: `#skipper_ig`
      - Instagram follow fallback: when there is no skip link, the extension swaps the `#step_ig` follow buttons from `undone` to `done` (no popup, nothing followed), clicks `#skipper_ig_channel`, waits up to 5 s for `#skipper_ig_next` to show, and clicks it.
+     - Bandcamp follow: the extension swaps the `#step_bc` follow buttons from `undone` to `done` (no popup, nothing followed), clicks `#skipper_bc_channel`, waits up to 5 s for `#skipper_bc_next` to show, and clicks it.
      - Twitch: `#skipper_th` (only some gates offer it)
      - Connect fallback (Spotify `#login_to_sp`, Twitch `#login_to_th`): when there is no skip link, the extension clicks the Connect button once (no retry; 20 s wait). This needs a one-time manual authorization on the platform and pop-ups allowed for hypeddit.com; otherwise it stops with a message saying so.
    - The extension clicks the skip link to advance. Never connect accounts, except Spotify and Twitch gates without a skip link, where the user opted in to the Connect workaround.

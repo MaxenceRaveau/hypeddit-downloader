@@ -21,7 +21,8 @@ HD.SKIP_STEPS = [
 
 HD.FOLLOW_STEPS = [
   { name: 'youtube-subscribe', step: 'yt', social: 'youtube' },
-  { name: 'instagram-follow', step: 'ig', social: 'instagram' }
+  { name: 'instagram-follow', step: 'ig', social: 'instagram' },
+  { name: 'bandcamp-follow', step: 'bc', social: 'bandcamp' }
 ];
 
 HD.CONNECT_STEPS = [
