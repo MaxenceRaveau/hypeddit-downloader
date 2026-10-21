@@ -19,6 +19,11 @@ HD.SKIP_STEPS = [
   { name: 'twitch', skip: '#skipper_th' }
 ];
 
+HD.FOLLOW_STEPS = [
+  { name: 'youtube-subscribe', step: 'yt', social: 'youtube' },
+  { name: 'instagram-follow', step: 'ig', social: 'instagram' }
+];
+
 HD.CONNECT_STEPS = [
   { name: 'spotify-connect', button: '#login_to_sp', label: 'Spotify' },
   { name: 'twitch-connect', button: '#login_to_th', label: 'Twitch' }
@@ -68,26 +73,26 @@ HD.steps = [
     }
   },
   ...HD.SKIP_STEPS.map(({ name, skip }) => ({ name, detect(root) { return HD.isActive(root.querySelector(skip)); }, async run(root) { root.querySelector(skip).click(); } })),
-  {
-    name: 'instagram-follow',
+  ...HD.FOLLOW_STEPS.map(({ name, step, social }) => ({
+    name,
     detect(root) {
-      return HD.isActive(root.querySelector('#skipper_ig_channel'));
+      return HD.isActive(root.querySelector(`#skipper_${step}_channel`));
     },
     async run(root) {
-      const buttons = root.querySelectorAll('#step_ig a.hype-btn-instagram.undone');
+      const buttons = root.querySelectorAll(`#step_${step} a.hype-btn-${social}.undone`);
       for (const button of buttons) {
         button.classList.replace('undone', 'done');
       }
-      root.querySelector('#skipper_ig_channel').click();
+      root.querySelector(`#skipper_${step}_channel`).click();
       const nextBtn = await HD.waitFor(() => {
-        const btn = root.querySelector('#skipper_ig_next');
+        const btn = root.querySelector(`#skipper_${step}_next`);
         return HD.isVisible(btn) && btn;
       }, { timeoutMs: 5000 });
       if (nextBtn) {
         nextBtn.click();
       }
     }
-  },
+  })),
   ...HD.CONNECT_STEPS.map(({ name, button, label }) => ({
     name,
     maxAttempts: 1,

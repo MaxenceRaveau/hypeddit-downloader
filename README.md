@@ -34,7 +34,7 @@ The extension currently handles the following gate steps:
 2. **SoundCloud**: Swaps button class from `undone` to `done` (client-side only)
 3. **Spotify**: Clicks the skip link (`#skipper[data-step="sp"]`) when the gate offers one. Otherwise clicks the Connect button (see "Connect gates").
 4. **TikTok**: Clicks the skip link (`#skipper_tk`)
-5. **YouTube**: Clicks the skip link (`#skipper_yt`)
+5. **YouTube**: Clicks the skip link (`#skipper_yt`) when the gate offers one. Otherwise swaps the subscribe buttons from `undone` to `done` (client-side only) and clicks Next twice (`#skipper_yt_channel`, then `#skipper_yt_next`)
 6. **Instagram**: Clicks the skip link (`#skipper_ig`) when the gate offers one. Otherwise swaps the follow buttons from `undone` to `done` (client-side only) and clicks Next twice (`#skipper_ig_channel`, then `#skipper_ig_next`)
 7. **Twitch**: Clicks the skip link (`#skipper_th`) when the gate offers one. Otherwise clicks the Connect button (see "Connect gates").
 

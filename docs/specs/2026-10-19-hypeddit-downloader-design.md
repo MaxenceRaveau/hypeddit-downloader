@@ -43,6 +43,7 @@ Clicking the initial "Download" button on the page opens the gate. Steps can app
      - Spotify: `#skipper[data-step="sp"]`
      - TikTok: `#skipper_tk`
      - YouTube: `#skipper_yt`
+     - YouTube subscribe fallback: when there is no skip link, the extension swaps the `#step_yt` subscribe buttons from `undone` to `done` (no popup, nothing subscribed), clicks `#skipper_yt_channel`, waits up to 5 s for `#skipper_yt_next` to show, and clicks it.
      - Instagram: `#skipper_ig`
      - Instagram follow fallback: when there is no skip link, the extension swaps the `#step_ig` follow buttons from `undone` to `done` (no popup, nothing followed), clicks `#skipper_ig_channel`, waits up to 5 s for `#skipper_ig_next` to show, and clicks it.
      - Twitch: `#skipper_th` (only some gates offer it)
